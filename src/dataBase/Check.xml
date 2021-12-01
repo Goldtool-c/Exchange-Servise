@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Checks xmlns="?">
+    <Check>
+        <date>15.07.2002</date>
+        <cashierName>popuashka</cashierName>
+        <customerName>Chelovek</customerName>
+        <customerCurrency>RUBBLE</customerCurrency>
+        <bankCurrency>DOLLAR</bankCurrency>
+        <customerCurrencyValue>2.0</customerCurrencyValue>
+        <id>21</id>
+    </Check>
+</Checks>

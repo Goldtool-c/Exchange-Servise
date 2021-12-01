@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Label fx:id="userNameLabel" layoutX="30.0" layoutY="32.0" text="Username:" />
+      <Button fx:id="logOutButton" layoutX="500.0" layoutY="28.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="67.0" text="Log Out" />
+      <ComboBox layoutX="30.0" layoutY="73.0" prefHeight="25.0" prefWidth="122.0" promptText="Your currency" />
+      <ComboBox layoutX="30.0" layoutY="113.0" prefHeight="25.0" prefWidth="128.0" promptText="Bank's currency" />
+      <TextField fx:id="userCurrencyField" layoutX="30.0" layoutY="207.0" prefHeight="25.0" prefWidth="142.0" promptText="Enter " />
+      <Label fx:id="userBalanceLabel" layoutX="174.0" layoutY="77.0" text="Balance:" />
+      <Label fx:id="bankBalanceLabel" layoutX="174.0" layoutY="117.0" text="Balance:" />
+      <Label fx:id="userCurExchangeLabel" layoutX="30.0" layoutY="184.0" text="Your currency to exchange" />
+      <TextField fx:id="bankCurrencyField1" layoutX="218.0" layoutY="206.0" prefHeight="25.0" prefWidth="150.0" promptText="Enter " />
+      <Label fx:id="bankCurExchangeLabel1" layoutX="218.0" layoutY="183.0" text="Bank's currency to exchange" />
+      <Button fx:id="exchangeButton" layoutX="388.0" layoutY="206.0" mnemonicParsing="false" text="Exchange" />
+      <Label fx:id="historyLabel" layoutX="30.0" layoutY="283.0" prefHeight="17.0" prefWidth="178.0" text="Exchages during the period from" />
+      <TextField fx:id="historyFromField" layoutX="208.0" layoutY="279.0" prefHeight="25.0" prefWidth="92.0" promptText="dd.mm.YYYY" />
+      <TextField fx:id="historyToField" layoutX="329.0" layoutY="279.0" prefHeight="25.0" prefWidth="92.0" promptText="dd.mm.YYYY" />
+      <Label fx:id="toLabel" layoutX="310.0" layoutY="283.0" text="to" />
+      <Button fx:id="getHistoryButton" layoutX="448.0" layoutY="279.0" mnemonicParsing="false" text="Get" />
+   </children>
+</AnchorPane>

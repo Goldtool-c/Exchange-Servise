@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Persons xmlns="?">
+    <Person>
+        <name>Chelovek</name>
+        <password>PotomBudetHash</password>
+        <role>CUSTOMER</role>
+        <balance>RUBLE 10.0|DOLLAR 15.0|YUAN 203.0</balance>
+    </Person>
+</Persons>
