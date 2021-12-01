@@ -10,6 +10,7 @@ import java.util.List;
 public enum PersonStorage implements Storage {
     GENERAL;
     private List<Entity> people = new ArrayList<>();
+    private Customer user;
     public void add(Entity person)
     {
         people.add(person);
@@ -22,6 +23,15 @@ public enum PersonStorage implements Storage {
     {
         return people.size();
     }
+
+    public void setUser(Customer user) {
+        this.user = user;
+    }
+
+    public Customer getUser() {
+        return user;
+    }
+
     public Entity get(int i)
     {
         return people.get(i);

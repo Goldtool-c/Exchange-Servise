@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Search {
-    public static Entity search(Storage storage, Criteria criteria) throws EntityNotFoundException {
+    public static Entity search(Storage storage, Criteria criteria) {
         Entity result = null;
         for (int i = 0; i < storage.size(); i++) {
             if(search(storage.get(i), criteria))
@@ -17,7 +17,8 @@ public class Search {
                 return storage.get(i);
             }
         }
-        throw new EntityNotFoundException("There is no entity that matches criteria "+criteria.toString());
+        System.out.println("There is no entity that matches criteria "+criteria.toString());//todo log.error
+        return null;
     }
     private static boolean search(Entity entity, Criteria criteria)
     {

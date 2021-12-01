@@ -6,4 +6,16 @@
         <role>CUSTOMER</role>
         <balance>RUBLE 10.0|DOLLAR 15.0|YUAN 203.0</balance>
     </Person>
+    <Person>
+        <name>d</name>
+        <password>d</password>
+        <role>CUSTOMER</role>
+        <balance>RUBLE 10.0|DOLLAR 15.0|YUAN 203.0</balance>
+    </Person>
+    <Person>
+        <name>a</name>
+        <password>a</password>
+        <role>CUSTOMER</role>
+        <balance>RUBLE 3279.6380516824865|DOLLAR 9796.294295955253|YUAN 5242.318427027138</balance>
+    </Person>
 </Persons>

@@ -1,13 +1,14 @@
 package sample;
 
-import DAO.ParseCustomer;
-import DAO.ParsePersonFile;
+import DAO.ParseEntity;
+import DAO.ParseFile;
 import application.entity.CheckFactory;
 import application.entity.CustomerFactory;
 import application.exception.UnknownCurrencyException;
 import application.exception.UnknownRoleException;
 import application.storage.CheckStorage;
 import application.storage.PersonStorage;
+import application.storage.StageStorage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,19 +24,20 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("MainSample.fxml"));
         primaryStage.setTitle("Exchange");
         primaryStage.setScene(new Scene(root, 600, 400));
-        primaryStage.show();
+        StageStorage.GENERAL.setCustomerStage(primaryStage);
         Parent logInRoot = FXMLLoader.load(getClass().getResource("LogInSample.fxml"));
         Stage logInStage = new Stage();
         logInStage.setTitle("Log In");
         logInStage.setScene(new Scene(logInRoot, 222, 192));
+        StageStorage.GENERAL.setLogInStage(logInStage);
         logInStage.show();
     }
 
 
     public static void main(String[] args) throws ParseException, UnknownCurrencyException, UnknownRoleException {
-        //ParsePersonFile.parse(CustomerFactory.INSTANCE, "Person");
+        ParseFile.parse(CustomerFactory.INSTANCE, "Person");
         //System.out.println("AllCustomers: " + PersonStorage.GENERAL.get(0));
-        //ParsePersonFile.parse(CheckFactory.GENERAL, "Check");
+        ParseFile.parse(CheckFactory.GENERAL, "Check");
         //System.out.println(PersonStorage.GENERAL.get(0));
         //"date","cashierName", "customerName","customerCurrency","bankCurrency","id"
         //Check check = CheckFactory.GENERAL.create(true, "15.07.2002", "Aguzok", "Chelovek", "RUBBLE", "DOLLAR", "15.0");
@@ -45,8 +47,8 @@ public class Main extends Application {
         //CheckFactory.GENERAL.create(true, "15.07.2002", "popuashka", "Chelovek", "RUBBLE", "DOLLAR", "2.0");
         //System.out.println("ALL Checks: " + CheckStorage.GENERAL.get(0));
         //System.out.println("AllCustomers: " + PersonStorage.GENERAL.get(0));
-        //ParseCustomer.parse(CheckStorage.GENERAL, "Check");
-        //ParseCustomer.parse(PersonStorage.GENERAL, "Person");
+        ParseEntity.parse(CheckStorage.GENERAL, "Check");
+        ParseEntity.parse(PersonStorage.GENERAL, "Person");
         launch(args);
     }
 }

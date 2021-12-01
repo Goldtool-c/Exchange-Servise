@@ -32,11 +32,7 @@ public enum CheckFactory implements Factory {
         {
             CheckStorage.GENERAL.add(check);
             Customer customer = null;
-            try {
-                customer = (Customer) Search.search(PersonStorage.GENERAL, new Criteria("name", customerName));
-            } catch (EntityNotFoundException e) {
-                e.printStackTrace();
-            }
+            customer = (Customer) Search.search(PersonStorage.GENERAL, new Criteria("name", customerName));
             if(customer != null) {
                 customer.setCheck(check);
             }
