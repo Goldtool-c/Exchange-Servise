@@ -12,6 +12,11 @@ public enum Bank {
     private Date currentDate;
     private int volume;
     private final int limit = 10000;
+    private HashMap<String, Double> exchangeRate;
+    public HashMap<String, Double> getExchangeRate()
+    {
+        return exchangeRate;
+    }
     public void setDate(String date) {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
         try {
@@ -20,17 +25,45 @@ public enum Bank {
             e.printStackTrace();
         }
     }
+    public HashMap<String, Double> getVault()
+    {
+        return vault;
+    }
     public void setDate(Date date)
     {
         this.currentDate = date;
     }
+    public int getVolume() {
+        return volume;
+    }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+
+    public Date getCurrentDate() {
+        return currentDate;
+    }
+
     public void incDate()
     {
         restoreVault();
         long time = currentDate.getTime();
         time = time + 86400000;
         currentDate.setTime(time);
+        setExchangeRate();
         volume = 0;
+    }
+    private void setExchangeRate()
+    {
+        //(Math.random() * ((max - min) + 1)) + min
+        double dollar = (Math.random() * ((2600 - 2400) + 1)) + 2400;
+        double rubble = (Math.random() * ((35 - 33) + 1)) + 33;
+        double yuan = (Math.random() * ((400 - 380) + 1)) + 380;
+        exchangeRate = new HashMap<>();
+        exchangeRate.put("Rubble", rubble);
+        exchangeRate.put("Dollar", dollar);
+        exchangeRate.put("Yuan", yuan);
     }
     private void restoreVault()
     {

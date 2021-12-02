@@ -9,7 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import sample.action.admin.SetSecondCurrency;
 import sample.action.admin.ShowBalance;
+import sample.action.admin.ShowBankBalance;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -63,6 +65,9 @@ public class Controller implements Initializable {
     @FXML
     private Button getHistoryButton;
 
+    private String userCurrencyExchange;
+    private String bankCurrencyExchange;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         UserNameField.customerLabel=userNameLabel;
@@ -73,5 +78,17 @@ public class Controller implements Initializable {
         bankCurBox.getItems().add("Dollar");
         bankCurBox.getItems().add("Yuan");
         yourCurBox.setOnAction(event -> ShowBalance.show(yourCurBox, userBalanceLabel));
+        bankCurBox.setOnAction(event -> ShowBankBalance.show(bankCurBox, bankBalanceLabel));
+        userCurrencyField.textProperty().addListener((observable, oldValue, newValue) ->
+        {
+            userCurrencyExchange = newValue;
+            SetSecondCurrency.set(userCurrencyField, bankCurrencyField1, yourCurBox, bankCurBox);
+        });
+        bankCurrencyField1.textProperty().addListener((observable, oldValue, newValue) ->
+        {
+            bankCurrencyExchange = newValue;
+            SetSecondCurrency.set(bankCurrencyField1, userCurrencyField, bankCurBox, yourCurBox);
+        });
+
     }
 }

@@ -1,7 +1,10 @@
 package sample;
 
+import DAO.ParseCurrentDate;
+import DAO.ParseDateFile;
 import DAO.ParseEntity;
 import DAO.ParseFile;
+import application.bank.Bank;
 import application.entity.CheckFactory;
 import application.entity.CustomerFactory;
 import application.exception.UnknownCurrencyException;
@@ -15,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.text.ParseException;
 
 public class Main extends Application {
@@ -34,22 +38,13 @@ public class Main extends Application {
     }
 
 
-    public static void main(String[] args) throws ParseException, UnknownCurrencyException, UnknownRoleException {
+    public static void main(String[] args) {
         ParseFile.parse(CustomerFactory.INSTANCE, "Person");
-        //System.out.println("AllCustomers: " + PersonStorage.GENERAL.get(0));
         ParseFile.parse(CheckFactory.GENERAL, "Check");
-        //System.out.println(PersonStorage.GENERAL.get(0));
-        //"date","cashierName", "customerName","customerCurrency","bankCurrency","id"
-        //Check check = CheckFactory.GENERAL.create(true, "15.07.2002", "Aguzok", "Chelovek", "RUBBLE", "DOLLAR", "15.0");
-        //Customer customer = (Customer) PersonStorage.GENERAL.get(0);
-        //System.out.println(customer.getChecks());
-        //"date","cashierName", "customerName","customerCurrency","bankCurrency","id"
-        //CheckFactory.GENERAL.create(true, "15.07.2002", "popuashka", "Chelovek", "RUBBLE", "DOLLAR", "2.0");
-        //System.out.println("ALL Checks: " + CheckStorage.GENERAL.get(0));
-        //System.out.println("AllCustomers: " + PersonStorage.GENERAL.get(0));
-        for (int i = 0; i < PersonStorage.GENERAL.size(); i++) {
-            System.out.println(PersonStorage.GENERAL.get(i));
-        }
+        ParseDateFile.parse();
+        System.out.println(Bank.GENERAL.getCurrentDate());
+        Bank.GENERAL.incDate();
+        ParseCurrentDate.parse();
         ParseEntity.parse(CheckStorage.GENERAL, "Check");
         ParseEntity.parse(PersonStorage.GENERAL, "Person");
         launch(args);
