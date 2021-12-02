@@ -47,6 +47,9 @@ public class Main extends Application {
         //CheckFactory.GENERAL.create(true, "15.07.2002", "popuashka", "Chelovek", "RUBBLE", "DOLLAR", "2.0");
         //System.out.println("ALL Checks: " + CheckStorage.GENERAL.get(0));
         //System.out.println("AllCustomers: " + PersonStorage.GENERAL.get(0));
+        for (int i = 0; i < PersonStorage.GENERAL.size(); i++) {
+            System.out.println(PersonStorage.GENERAL.get(i));
+        }
         ParseEntity.parse(CheckStorage.GENERAL, "Check");
         ParseEntity.parse(PersonStorage.GENERAL, "Person");
         launch(args);

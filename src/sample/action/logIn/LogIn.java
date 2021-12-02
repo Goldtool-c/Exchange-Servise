@@ -10,6 +10,7 @@ import application.exception.UnknownRoleException;
 import application.search.Search;
 import application.storage.PersonStorage;
 import application.storage.StageStorage;
+import application.util.UserNameField;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -24,6 +25,7 @@ public class LogIn {
         {
             PersonStorage.GENERAL.setUser(register(login, password));
             ParseEntity.parse(PersonStorage.GENERAL, "Person");
+            UserNameField.customerLabel.setText("Username: " + PersonStorage.GENERAL.getUser().getName());
             StageStorage.GENERAL.getCustomerStage().show();
             stage.close();
         }
@@ -31,6 +33,7 @@ public class LogIn {
         {
             if(password.equals(user.getPassword())) {
                 PersonStorage.GENERAL.setUser(user);
+                UserNameField.customerLabel.setText("Username: " + PersonStorage.GENERAL.getUser().getName());
                 StageStorage.GENERAL.getCustomerStage().show();
                 stage.close();
             }
@@ -52,7 +55,6 @@ public class LogIn {
         } catch (UnknownRoleException | UnknownCurrencyException | ParseException e) {
             e.printStackTrace();
         }
-        System.out.println(customer);
         return customer;
     }
 }

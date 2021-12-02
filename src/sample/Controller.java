@@ -1,16 +1,31 @@
 package sample;
 
+import application.storage.PersonStorage;
+import application.util.UserNameField;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import sample.action.admin.ShowBalance;
 
-public class Controller {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Controller implements Initializable {
     @FXML
     private Label userNameLabel;
 
     @FXML
     private Button logOutButton;
+
+    @FXML
+    private ComboBox<String> yourCurBox;
+
+    @FXML
+    private ComboBox<String> bankCurBox;
 
     @FXML
     private TextField userCurrencyField;
@@ -48,4 +63,15 @@ public class Controller {
     @FXML
     private Button getHistoryButton;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        UserNameField.customerLabel=userNameLabel;
+        yourCurBox.getItems().add("Rubble");
+        yourCurBox.getItems().add("Dollar");
+        yourCurBox.getItems().add("Yuan");
+        bankCurBox.getItems().add("Rubble");
+        bankCurBox.getItems().add("Dollar");
+        bankCurBox.getItems().add("Yuan");
+        yourCurBox.setOnAction(event -> ShowBalance.show(yourCurBox, userBalanceLabel));
+    }
 }
