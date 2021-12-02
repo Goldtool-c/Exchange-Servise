@@ -16,7 +16,7 @@ public class SetSecondCurrency {
         HashMap<String, Double> rate = Bank.GENERAL.getExchangeRate();
         double firstRate = rate.get(firstCurrency);
         double secondRate = rate.get(secondCurrency);
-        double secondNumber = (secondRate*firstNumber)/firstRate;
+        double secondNumber = (firstRate/secondRate)*firstNumber;
         second.setPromptText(""+secondNumber);
     }
 }

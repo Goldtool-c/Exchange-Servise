@@ -52,7 +52,7 @@ public class Customer implements Entity {
         props[0] =""+getName();
         props[1] =""+getPassword();
         props[2] =""+getRole();
-        props[3] ="RUBLE "+balance.get("RUBLE")+"|"+"DOLLAR "+balance.get("DOLLAR")+"|"+"YUAN "+balance.get("YUAN");
+        props[3] ="RUBBLE "+balance.get("RUBBLE")+"|"+"DOLLAR "+balance.get("DOLLAR")+"|"+"YUAN "+balance.get("YUAN");
         return props;
     }
 

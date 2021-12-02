@@ -13,7 +13,7 @@ public class ShowBalance {
         {
             case "Rubble":
             {
-                label.setText("Balance: "+PersonStorage.GENERAL.getUser().getBalance().get("RUBLE").toString());
+                label.setText("Balance: "+PersonStorage.GENERAL.getUser().getBalance().get("RUBBLE").toString());
                 break;
             }
             case "Dollar":

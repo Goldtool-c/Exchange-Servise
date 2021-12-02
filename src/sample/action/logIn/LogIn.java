@@ -1,6 +1,7 @@
 package sample.action.logIn;
 
 import DAO.ParseEntity;
+import application.bank.Bank;
 import application.criteria.Criteria;
 import application.entity.Customer;
 import application.entity.CustomerFactory;
@@ -42,6 +43,8 @@ public class LogIn {
                 System.out.println("Incorrect login or password");
             }
         }
+        System.out.println("bank: " + Bank.GENERAL.getVault());
+        System.out.println("user: " + PersonStorage.GENERAL.getUser().getBalance());
     }
     private static Customer register(String login, String password)
     {
@@ -51,7 +54,7 @@ public class LogIn {
         double yuan = (Math.random()*((10000-100)+1))+100;
         Customer customer = null;
         try {
-            customer = (Customer) CustomerFactory.INSTANCE.create(true, login, password, "CUSTOMER", "RUBLE "+rubble+"|DOLLAR "+dollar+"|YUAN "+yuan);
+            customer = (Customer) CustomerFactory.INSTANCE.create(true, login, password, "CUSTOMER", "RUBBLE "+rubble+"|DOLLAR "+dollar+"|YUAN "+yuan);
         } catch (UnknownRoleException | UnknownCurrencyException | ParseException e) {
             e.printStackTrace();
         }

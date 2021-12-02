@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import sample.action.admin.Exchange;
 import sample.action.admin.SetSecondCurrency;
 import sample.action.admin.ShowBalance;
 import sample.action.admin.ShowBankBalance;
@@ -89,6 +90,6 @@ public class Controller implements Initializable {
             bankCurrencyExchange = newValue;
             SetSecondCurrency.set(bankCurrencyField1, userCurrencyField, bankCurBox, yourCurBox);
         });
-
+        exchangeButton.setOnAction( event -> Exchange.exchange(userCurrencyField, bankCurrencyField1, yourCurBox, bankCurBox));
     }
 }
