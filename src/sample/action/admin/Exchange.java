@@ -41,6 +41,7 @@ public class Exchange {
                     userCurrencyStr, bankCurrencyStr, userValueStr, bankValueStr);
             ParseEntity.parse(CheckStorage.GENERAL, "Check");
             ParseEntity.parse(PersonStorage.GENERAL, "Person");
+            Bank.GENERAL.incVolume();
             //"date","cashierName", "customerName", "customerCurrency","bankCurrency", "customerCurrencyValue","bankCurrencyValue","id"
         }
     }
@@ -123,6 +124,12 @@ public class Exchange {
             System.out.println("User or bank does not have enough currency for this operation");
             return false;
         }
+        if(PersonStorage.GENERAL.getUser().getVolume()>1000.0||PersonStorage.GENERAL.getUser().getVolume()+userBalance>1000.0)
+        {
+            System.out.println("User is going to break the limit");
+            return false;
+        }
+        PersonStorage.GENERAL.getUser().incVolume(userBalance);
         return true;
     }
 }

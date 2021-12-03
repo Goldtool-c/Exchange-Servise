@@ -25,10 +25,18 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        //admin stage
         Parent root = FXMLLoader.load(getClass().getResource("MainSample.fxml"));
         primaryStage.setTitle("Exchange");
         primaryStage.setScene(new Scene(root, 600, 400));
-        StageStorage.GENERAL.setCustomerStage(primaryStage);
+        StageStorage.GENERAL.setAdminStage(primaryStage);
+        Parent customerRoot = FXMLLoader.load(getClass().getResource("CustomerSample.fxml"));
+        //customer stage
+        Stage customerStage = new Stage();
+        customerStage.setTitle("Exchange");
+        customerStage.setScene(new Scene(customerRoot, 600, 400));
+        StageStorage.GENERAL.setCustomerStage(customerStage);
+        //login stage
         Parent logInRoot = FXMLLoader.load(getClass().getResource("LogInSample.fxml"));
         Stage logInStage = new Stage();
         logInStage.setTitle("Log In");

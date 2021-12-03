@@ -1,5 +1,8 @@
 package application.bank;
 
+import application.entity.Customer;
+import application.storage.PersonStorage;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -53,6 +56,20 @@ public enum Bank {
         currentDate.setTime(time);
         setExchangeRate();
         volume = 0;
+    }
+    public void incVolume()
+    {
+        volume++;
+        final int operationsLimit = 4;
+        if(volume>=operationsLimit) {
+            volume=0;
+            Customer temp;
+            for (int i = 0; i < PersonStorage.GENERAL.size(); i++) {
+                temp = (Customer) PersonStorage.GENERAL.get(i);
+                temp.setVolume(0.0);
+            }
+            incDate();
+        }
     }
     private void setExchangeRate()
     {

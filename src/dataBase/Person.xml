@@ -15,7 +15,13 @@
     <Person>
         <name>a</name>
         <password>a</password>
+        <role>ADMIN</role>
+        <balance>RUBBLE 69062.33362719361|DOLLAR 8845.987415424634|YUAN 5242.318427027138</balance>
+    </Person>
+    <Person>
+        <name>r</name>
+        <password>r</password>
         <role>CUSTOMER</role>
-        <balance>RUBBLE 692.2933569769554|DOLLAR 9831.219303677923|YUAN 5242.318427027138</balance>
+        <balance>RUBBLE 2730.3838813441116|DOLLAR 5811.865175205355|YUAN 7605.09627253241</balance>
     </Person>
 </Persons>

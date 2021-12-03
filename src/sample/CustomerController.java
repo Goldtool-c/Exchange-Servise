@@ -3,9 +3,7 @@ package sample;
 import application.exception.InValidDateException;
 import application.exception.UnknownCurrencyException;
 import application.exception.UnknownRoleException;
-import application.storage.PersonStorage;
 import application.util.UserNameField;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -18,7 +16,7 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+public class CustomerController implements Initializable {
     @FXML
     private Label userNameLabel;
 
@@ -52,24 +50,8 @@ public class Controller implements Initializable {
     @FXML
     private Button exchangeButton;
 
-    @FXML
-    private Label historyLabel;
-
-    @FXML
-    private TextField historyFromField;
-
-    @FXML
-    private TextField historyToField;
-
-    @FXML
-    private Label toLabel;
-
-    @FXML
-    private Button getHistoryButton;
-
     private String userCurrencyExchange;
     private String bankCurrencyExchange;
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         UserNameField.customerLabel=userNameLabel;
@@ -99,13 +81,6 @@ public class Controller implements Initializable {
             }
             ShowBalance.show(yourCurBox, userBalanceLabel);
             ShowBankBalance.show(bankCurBox, bankBalanceLabel);
-        });
-        getHistoryButton.setOnAction(event -> {
-            try {
-                History.getHistory(historyFromField, historyToField);
-            } catch (ParseException | InValidDateException e) {
-                e.printStackTrace();
-            }
         });
         logOutButton.setOnAction(event -> LogOut.logOut(logOutButton));
     }

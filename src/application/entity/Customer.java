@@ -12,7 +12,21 @@ public class Customer implements Entity {
     private String password;
     private Role role;
     private Map balance;
-    private List<Check> checks = new ArrayList<>();
+    private List<Check> checks;
+    private double volume;
+
+    public double getVolume() {
+        return volume;
+    }
+
+    public void setVolume(double volume) {
+        this.volume = volume;
+    }
+    public void incVolume(double value)
+    {
+        this.volume = this.volume + value;
+    }
+
     private int id;
     public static final String[] CustomerProperties = {"name", "password", "role", "balance"};
     public int getId()

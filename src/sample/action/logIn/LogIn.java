@@ -5,7 +5,7 @@ import application.bank.Bank;
 import application.criteria.Criteria;
 import application.entity.Customer;
 import application.entity.CustomerFactory;
-import application.entity.impl.Entity;
+import application.entity.Role;
 import application.exception.UnknownCurrencyException;
 import application.exception.UnknownRoleException;
 import application.search.Search;
@@ -35,7 +35,12 @@ public class LogIn {
             if(password.equals(user.getPassword())) {
                 PersonStorage.GENERAL.setUser(user);
                 UserNameField.customerLabel.setText("Username: " + PersonStorage.GENERAL.getUser().getName());
-                StageStorage.GENERAL.getCustomerStage().show();
+                if(user.getRole() == Role.ADMIN) {
+                    StageStorage.GENERAL.getAdminStage().show();
+                }
+                else{
+                    StageStorage.GENERAL.getCustomerStage().show();
+                }
                 stage.close();
             }
             else
