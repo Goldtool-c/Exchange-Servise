@@ -1,5 +1,8 @@
 package sample;
 
+import application.exception.InValidDateException;
+import application.exception.UnknownCurrencyException;
+import application.exception.UnknownRoleException;
 import application.storage.PersonStorage;
 import application.util.UserNameField;
 import javafx.application.Platform;
@@ -9,12 +12,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import sample.action.admin.Exchange;
-import sample.action.admin.SetSecondCurrency;
-import sample.action.admin.ShowBalance;
-import sample.action.admin.ShowBankBalance;
+import sample.action.admin.*;
 
 import java.net.URL;
+import java.text.ParseException;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -90,6 +91,21 @@ public class Controller implements Initializable {
             bankCurrencyExchange = newValue;
             SetSecondCurrency.set(bankCurrencyField1, userCurrencyField, bankCurBox, yourCurBox);
         });
-        exchangeButton.setOnAction( event -> Exchange.exchange(userCurrencyField, bankCurrencyField1, yourCurBox, bankCurBox));
+        exchangeButton.setOnAction( event -> {
+            try {
+                Exchange.exchange(userCurrencyField, bankCurrencyField1, yourCurBox, bankCurBox);
+            } catch (UnknownRoleException | ParseException | UnknownCurrencyException e) {
+                e.printStackTrace();
+            }
+            ShowBalance.show(yourCurBox, userBalanceLabel);
+            ShowBankBalance.show(bankCurBox, bankBalanceLabel);
+        });
+        getHistoryButton.setOnAction(event -> {
+            try {
+                History.getHistory(historyFromField, historyToField);
+            } catch (ParseException | InValidDateException e) {
+                e.printStackTrace();
+            }
+        });
     }
 }

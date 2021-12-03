@@ -1,12 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Checks xmlns="?">
     <Check>
-        <date>15.07.2002</date>
-        <cashierName>popuashka</cashierName>
-        <customerName>Chelovek</customerName>
+        <date>11.08.2002</date>
+        <cashierName>cashier1</cashierName>
+        <customerName>a</customerName>
         <customerCurrency>RUBBLE</customerCurrency>
         <bankCurrency>DOLLAR</bankCurrency>
-        <customerCurrencyValue>2.0</customerCurrencyValue>
+        <customerCurrencyValue>3200.0</customerCurrencyValue>
+        <bankCurrencyValue>44.73795036355412</bankCurrencyValue>
         <id>21</id>
+    </Check>
+    <Check>
+        <date>12.08.2002</date>
+        <cashierName>cashier1</cashierName>
+        <customerName>a</customerName>
+        <customerCurrency>RUBBLE</customerCurrency>
+        <bankCurrency>DOLLAR</bankCurrency>
+        <customerCurrencyValue>3200.0</customerCurrencyValue>
+        <bankCurrencyValue>43.925007722670244</bankCurrencyValue>
+        <id>22</id>
+    </Check>
+    <Check>
+        <date>13.08.2002</date>
+        <cashierName>cashier1</cashierName>
+        <customerName>a</customerName>
+        <customerCurrency>DOLLAR</customerCurrency>
+        <bankCurrency>RUBBLE</bankCurrency>
+        <customerCurrencyValue>9.0</customerCurrencyValue>
+        <bankCurrencyValue>612.6553052944688</bankCurrencyValue>
+        <id>23</id>
     </Check>
 </Checks>

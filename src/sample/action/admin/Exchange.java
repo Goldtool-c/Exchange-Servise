@@ -1,20 +1,27 @@
 package sample.action.admin;
 
+import DAO.ParseEntity;
 import application.bank.Bank;
+import application.entity.CheckFactory;
+import application.exception.UnknownCurrencyException;
+import application.exception.UnknownRoleException;
+import application.storage.CheckStorage;
 import application.storage.PersonStorage;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class Exchange {
-    public static void exchange(TextField userValue, TextField bankValue, ComboBox<String> userCurrency, ComboBox<String> bankCurrency)
-    {
+    public static void exchange(TextField userValue, TextField bankValue, ComboBox<String> userCurrency, ComboBox<String> bankCurrency) throws UnknownRoleException, ParseException, UnknownCurrencyException {
         String userValueStr;
         String bankValueStr;
         String userCurrencyStr = parseCurrency(userCurrency);
         String bankCurrencyStr = parseCurrency(bankCurrency);
-        if(isFill(userValue, bankValue))
+        if(valid(userValue, bankValue, userCurrencyStr, bankCurrencyStr))
         {
             userValueStr = parseValue(userValue);
             bankValueStr = parseValue(bankValue);
@@ -28,9 +35,13 @@ public class Exchange {
             vault.put(userCurrencyStr, bankGet + Double.parseDouble(userValueStr));
             PersonStorage.GENERAL.getUser().getBalance().put(userCurrencyStr, userGive - Double.parseDouble(userValueStr));
             PersonStorage.GENERAL.getUser().getBalance().put(bankCurrencyStr, userGet + Double.parseDouble(bankValueStr));
-            //delete next
-            System.out.println("bank: " + Bank.GENERAL.getVault());
-            System.out.println("user: " + PersonStorage.GENERAL.getUser().getBalance());
+            SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
+            String date = format.format(Bank.GENERAL.getCurrentDate());
+            CheckFactory.GENERAL.create(true, date, "cashier1", PersonStorage.GENERAL.getUser().getName(),
+                    userCurrencyStr, bankCurrencyStr, userValueStr, bankValueStr);
+            ParseEntity.parse(CheckStorage.GENERAL, "Check");
+            ParseEntity.parse(PersonStorage.GENERAL, "Person");
+            //"date","cashierName", "customerName", "customerCurrency","bankCurrency", "customerCurrencyValue","bankCurrencyValue","id"
         }
     }
     private static boolean isFill(TextField userValue, TextField bankValue)
@@ -43,6 +54,11 @@ public class Exchange {
         if(bankValue.getPromptText().equals("") && bankValue.getText().equals(""))
         {
             System.out.println("false bank");
+            return false;
+        }
+        if(!userValue.getText().equals("") && !bankValue.getText().equals(""))
+        {
+            System.out.println("one of the fields should have prompt");
             return false;
         }
         return true;
@@ -77,5 +93,36 @@ public class Exchange {
         else {
             return value.getPromptText();
         }
+    }
+    private static void printCheck()
+    {
+
+    }
+    private static boolean valid(TextField userValue, TextField bankValue, String userCurrencyStr, String bankCurrencyStr)
+    {
+        double userBalance, bankBalance;
+        if(!isFill(userValue, bankValue))
+        {
+            System.out.println("invalid data in textFields");
+            return false;
+        }
+        if(!userValue.getText().equals(""))
+        {
+            userBalance=Double.parseDouble(userValue.getText());
+        } else {
+            userBalance = Double.parseDouble(userValue.getPromptText());
+        }
+        if(!bankValue.getText().equals(""))
+        {
+            bankBalance=Double.parseDouble(bankValue.getText());
+        } else {
+            bankBalance = Double.parseDouble(bankValue.getPromptText());
+        }
+        if(bankBalance>Bank.GENERAL.getVault().get(bankCurrencyStr)||userBalance>(double)PersonStorage.GENERAL.getUser().getBalance().get(userCurrencyStr))
+        {
+            System.out.println("User or bank does not have enough currency for this operation");
+            return false;
+        }
+        return true;
     }
 }

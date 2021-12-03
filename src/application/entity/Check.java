@@ -8,13 +8,14 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Check implements Entity {
-    public static final String[] properties = {"date","cashierName", "customerName", "customerCurrency","bankCurrency", "customerCurrencyValue","id"};
+    public static final String[] properties = {"date","cashierName", "customerName", "customerCurrency","bankCurrency", "customerCurrencyValue","bankCurrencyValue","id"};
     private Date date;
     private String cashierName;
     private String customerName;
-    private CurrencyType customerCurrency;
-    private CurrencyType bankCurrency;
+    private CurrencyType customerCurrency;//продано
+    private CurrencyType bankCurrency;//приобретено
     private double customerCurrencyValue;
+    private double bankCurrencyValue;
     private int id;
 
     public Date getDate() {
@@ -45,7 +46,15 @@ public class Check implements Entity {
         return id;
     }
 
-    Check(Date date, String cashierName, String customerName, CurrencyType customerCurrency, CurrencyType bankCurrency, Double value, int id)
+    public double getBankCurrencyValue() {
+        return bankCurrencyValue;
+    }
+
+    public void setBankCurrencyValue(double bankCurrencyValue) {
+        this.bankCurrencyValue = bankCurrencyValue;
+    }
+
+    Check(Date date, String cashierName, String customerName, CurrencyType customerCurrency, CurrencyType bankCurrency, Double value, Double bankValue, int id)
     {
         this.date = date;
         this.cashierName = cashierName;
@@ -54,11 +63,12 @@ public class Check implements Entity {
         this.bankCurrency = bankCurrency;
         this.id = id;
         this.customerCurrencyValue = value;
+        this.bankCurrencyValue = bankValue;
     }
 
     @Override
     public String[] getProps() {
-        String[] props = new String[7];
+        String[] props = new String[8];
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.getDefault());
         props[0] = format.format(date);
         props[1] = cashierName;
@@ -66,20 +76,22 @@ public class Check implements Entity {
         props[3] = customerCurrency.toString();
         props[4] = bankCurrency.toString();
         props[5] = ""+customerCurrencyValue;
-        props[6] = ""+id;
+        props[6] = ""+bankCurrencyValue;
+        props[7] = ""+id;
         return props;
     }
 
     @Override
     public String[] getPropsNames() {
-        String[] props = new String[7];
+        String[] props = new String[8];
         props[0] = "date";
         props[1] = "cashierName";
         props[2] = "customerName";
         props[3] = "customerCurrency";
         props[4] = "bankCurrency";
         props[5] = "customerCurrencyValue";
-        props[6] = "id";
+        props[6] = "bankCurrencyValue";
+        props[7] = "id";
         return props;
     }
 
@@ -90,7 +102,7 @@ public class Check implements Entity {
                 "date=" + format.format(date) +
                 ", cashierName='" + cashierName + '\'' +
                 ", customerName='" + customerName + '\'' +
-                ", customerCurrency=" + customerCurrency +
+                ", \ncustomerCurrency=" + customerCurrency +
                 ", bankCurrency=" + bankCurrency +
                 ", customerCurrencyValue=" + customerCurrencyValue +
                 ", id=" + id +

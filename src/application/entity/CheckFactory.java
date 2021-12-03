@@ -27,7 +27,8 @@ public enum CheckFactory implements Factory {
         CurrencyType customerCurrency = getCurrencyType(args[3]);
         CurrencyType bankCurrency = getCurrencyType(args[4]);
         double value = Double.parseDouble(args[5]);
-        Check check = new Check(date, cashierName, customerName, customerCurrency, bankCurrency, value, Integer.parseInt("2"+id));
+        double bankValue = Double.parseDouble(args[6]);
+        Check check = new Check(date, cashierName, customerName, customerCurrency, bankCurrency, value, bankValue, Integer.parseInt("2"+id));
         if(save)
         {
             CheckStorage.GENERAL.add(check);
