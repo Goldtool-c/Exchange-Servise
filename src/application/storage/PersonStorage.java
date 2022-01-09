@@ -6,7 +6,10 @@ import application.storage.impl.Storage;
 
 import java.util.ArrayList;
 import java.util.List;
-
+/**
+ * Класс репозиторий, содержащий хранилище со списком клиентов со свойствами <b>people</b>, <b>user</b>
+ * @author Денис Гладышев
+ * @version 1.0*/
 public enum PersonStorage implements Storage {
     GENERAL;
     private List<Entity> people = new ArrayList<>();
@@ -23,11 +26,15 @@ public enum PersonStorage implements Storage {
     {
         return people.size();
     }
-
-    public void setUser(Customer user) {
+    /**
+     * Метод для указания активного пользователя
+     * @param user - активный пользователь */
+    public void setUser(Customer user) {//todo another class for active user
         this.user = user;
     }
-
+    /**
+     * Метод для получения активного пользователя
+     * @return активный пользователь*/
     public Customer getUser() {
         return user;
     }

@@ -18,6 +18,10 @@ import java.net.URL;
 import java.text.ParseException;
 import java.util.ResourceBundle;
 
+/**
+ * Класс контроллер для окна, заданного файлом MainSample.fxml
+ * @author Денис Гладышев
+ * @version 1.0*/
 public class Controller implements Initializable {
     @FXML
     private Label userNameLabel;
@@ -72,7 +76,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        UserNameField.customerLabel=userNameLabel;
+        UserNameField.adminLabel=userNameLabel;
         yourCurBox.getItems().add("Rubble");
         yourCurBox.getItems().add("Dollar");
         yourCurBox.getItems().add("Yuan");

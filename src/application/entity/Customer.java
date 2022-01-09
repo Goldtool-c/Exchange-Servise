@@ -2,60 +2,82 @@ package application.entity;
 
 import application.entity.impl.Entity;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
+/**
+ * Класс Клиент со свойствами <b>name</b>, <b>password</b>, <b>role</b>, <b>balance</b>, <b>reciepts</b>, <b>volumeLimit</b>
+ * @author Денис Гладышев
+ * @version 1.0*/
 public class Customer implements Entity {
     private String name;
     private String password;
     private Role role;
     private Map balance;
-    private List<Check> checks;
-    private double volume;
+    private List<Reciept> reciepts;
+    private double volumeLimit;
 
-    public double getVolume() {
-        return volume;
+    /**
+     * Метод получения значения поля {@link Customer#volumeLimit}
+     * @return Возвращает суммарный объем операций за день*/
+    public double getVolumeLimit() {
+        return volumeLimit;
     }
 
-    public void setVolume(double volume) {
-        this.volume = volume;
+    public void setVolumeLimit(double volumeLimit) {
+        this.volumeLimit = volumeLimit;
     }
     public void incVolume(double value)
     {
-        this.volume = this.volume + value;
+        this.volumeLimit = this.volumeLimit + value;
     }
 
     private int id;
     public static final String[] CustomerProperties = {"name", "password", "role", "balance"};
+    /**
+     * Метод получения значения поля {@link Customer#id}
+     * @return Возвращает id объекта*/
     public int getId()
     {
         return id;
     }
-
+    /**
+     * Метод получения значения поля {@link Customer#role}
+     * @return возвращает роль клиента*/
     public Role getRole() {
         return role;
     }
 
+    /**
+     * Метод получения значения поля {@link Customer#password}
+     * @return Возвращает пароль*/
     public String getPassword() {
         return password;
     }
-
+    /**
+     * Метод получения значения поля {@link Customer#name}
+     * @return возвращает имя пользователя*/
     public String getName() {
         return name;
     }
-
+    /**
+     * Метод получения значения поля {@link Customer#balance}
+     * @return Возвращает баланс пользователя*/
     public Map getBalance() {
         return balance;
     }
-
-    public List<Check> getChecks() {
-        return checks;
+    /**
+     * Метод получения значения поля {@link Customer#reciepts}
+     * @return Возвращает чеки опреаций, которые выполнил этот пользователь*/
+    public List<Reciept> getReciepts() {
+        return reciepts;
     }
-    void setCheck(Check check)
+    /**
+     * Метод пополнения количества элементов {@link Customer#reciepts}
+     * @param reciept - чек операции, который принадлежит этому пользователю*/
+    void setCheck(Reciept reciept)
     {
-        checks.add(check);
+        reciepts.add(reciept);
     }
     @Override
     public String[] getProps()
@@ -81,7 +103,7 @@ public class Customer implements Entity {
         this.password = password;
         this.balance = balance;
         this.id = id;
-        this.checks = new LinkedList<>();
+        this.reciepts = new LinkedList<>();
     }
 
     @Override
@@ -91,7 +113,7 @@ public class Customer implements Entity {
                 ", password='" + password + '\'' +
                 ", role=" + role +
                 ", balance=" + balance +
-                ", checks=" + checks +
+                ", reciepts=" + reciepts +
                 ", id=" + id +
                 '}';
     }

@@ -9,14 +9,17 @@ import application.storage.PersonStorage;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
-
+/**
+ * Класс Фабрика клиентов со свойствами <b>id</b>
+ * @author Денис Глдаышев
+ * @version 1.0*/
 public enum CustomerFactory implements Factory {
     INSTANCE;
     //private String name;
     //private String password;
     //private Role role;
     //private Map balance;
-    //private List<Check> checks;
+    //private List<Reciept> checks;
     private static int id = 1;
     @Override
     public Entity create(boolean save, String... args) throws UnknownRoleException, UnknownCurrencyException, ParseException {
@@ -34,6 +37,11 @@ public enum CustomerFactory implements Factory {
         }
         return person;
     }
+    /**
+     * Метод преобразования роли из строки в {@link Role}
+     * @param role - строковое представление роли
+     * @param name - имя создаваемого объекта
+     * @return возвращает роль в формате {@link Role}*/
     private Role getRole(String role, String name) throws UnknownRoleException {
         switch (role)
         {
@@ -51,6 +59,11 @@ public enum CustomerFactory implements Factory {
             }
         }
     }
+    /**
+     * Метод преобразования баланса из строки в {@link Map}
+     * @param balance - строковое представление баланса
+     * @param name - имя создаваемого объекта
+     * @return возвращает роль в формате {@link Map}*/
     private Map<String, Double> getBalance(String balance, String name)
     {
         String []element;
@@ -73,6 +86,10 @@ public enum CustomerFactory implements Factory {
         result.put(element[0], Double.parseDouble(element[1]));
         return result;
     }
+    /**
+     * Метод разделения строки на 2 параметра для дальнейшего преобразования
+     * @param str - строка, содержащая 2 параметра
+     * @return Возвращает массив с разделенными параметрами*/
     private String[] stringToElement(String str)
     {
         String []element = new String[2];

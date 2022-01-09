@@ -15,7 +15,10 @@ import sample.action.admin.*;
 import java.net.URL;
 import java.text.ParseException;
 import java.util.ResourceBundle;
-
+/**
+ * Класс контроллер для окна, заданного файлом CustomerSample.fxml
+ * @author Денис Гладышев
+ * @version 1.0*/
 public class CustomerController implements Initializable {
     @FXML
     private Label userNameLabel;

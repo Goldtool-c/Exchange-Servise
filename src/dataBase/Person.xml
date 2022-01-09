@@ -13,15 +13,27 @@
         <balance>RUBBLE 10.0|DOLLAR 15.0|YUAN 203.0</balance>
     </Person>
     <Person>
-        <name>a</name>
+        <name>admin</name>
         <password>a</password>
         <role>ADMIN</role>
-        <balance>RUBBLE 69062.33362719361|DOLLAR 8845.987415424634|YUAN 5242.318427027138</balance>
+        <balance>RUBBLE 68162.33362719361|DOLLAR 8833.674378594662|YUAN 5395.887038855501</balance>
     </Person>
     <Person>
         <name>r</name>
         <password>r</password>
         <role>CUSTOMER</role>
         <balance>RUBBLE 2730.3838813441116|DOLLAR 5811.865175205355|YUAN 7605.09627253241</balance>
+    </Person>
+    <Person>
+        <name>goldtool</name>
+        <password>denis</password>
+        <role>CUSTOMER</role>
+        <balance>RUBBLE 3005.3006046570013|DOLLAR 7549.054311363298|YUAN 8071.664908734853</balance>
+    </Person>
+    <Person>
+        <name>мдфвзшщвк</name>
+        <password>ыпмтоцщ</password>
+        <role>CUSTOMER</role>
+        <balance>RUBBLE 7502.305079272706|DOLLAR 200.53545690526084|YUAN 5737.863597627466</balance>
     </Person>
 </Persons>

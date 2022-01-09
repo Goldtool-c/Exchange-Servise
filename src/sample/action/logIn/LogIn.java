@@ -16,8 +16,16 @@ import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.text.ParseException;
-
+/**
+ * Класс, обеспечивающий функционорование logInButton в {@link sample.LogInController}
+ * @author Денис Гладышев
+ * @version 1.0*/
 public class LogIn {
+    /**
+     *Метод, определяющий поведение кнопки
+     * @param logInButton - кнопка
+     * @param login - логин
+     * @param password - пароль*/
     public static void logIn(Button logInButton, String login, String password)
     {
         Stage stage = (Stage)logInButton.getScene().getWindow();
@@ -36,6 +44,7 @@ public class LogIn {
                 PersonStorage.GENERAL.setUser(user);
                 UserNameField.customerLabel.setText("Username: " + PersonStorage.GENERAL.getUser().getName());
                 if(user.getRole() == Role.ADMIN) {
+                    UserNameField.adminLabel.setText("Username: " + PersonStorage.GENERAL.getUser().getName());
                     StageStorage.GENERAL.getAdminStage().show();
                 }
                 else{

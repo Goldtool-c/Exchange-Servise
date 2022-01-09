@@ -10,7 +10,10 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-
+/**
+ * Класс контроллер для окна, заданного файлом LogInSample.fxml
+ * @author Денис Гладышев
+ * @version 1.0*/
 public class LogInController implements Initializable {
     @FXML
     private TextField loginField;

@@ -1,6 +1,6 @@
 package sample.action.admin;
 
-import application.entity.Check;
+import application.entity.Reciept;
 import application.exception.InValidDateException;
 import application.storage.CheckStorage;
 import javafx.scene.Scene;
@@ -13,7 +13,15 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Класс, обеспечивающий процедуру получения истории операций за период в {@link sample.Controller}
+ * @author Денис Гладышев
+ * @version 1.0*/
 public class History {
+    /**
+     * Метод, определяющий поведение кнопки geyHistoryButton в {@link sample.Controller}
+     * @param first - начало периода
+     * @param second - конец периода*/
     public static void getHistory(TextField first, TextField second) throws ParseException, InValidDateException {
         String fromStr = first.getText();
         String toStr = second.getText();
@@ -23,9 +31,9 @@ public class History {
         StringBuilder sb = new StringBuilder();
         if(isValid(from, to))
         {
-            Check temp;
+            Reciept temp;
             for (int i = 0; i < CheckStorage.GENERAL.size(); i++) {//todo binary search
-                temp = (Check) CheckStorage.GENERAL.get(i);
+                temp = (Reciept) CheckStorage.GENERAL.get(i);
                 if(temp.getDate().getTime()>=from.getTime()&&temp.getDate().getTime()<=to.getTime())
                 {
                     sb.append(temp);

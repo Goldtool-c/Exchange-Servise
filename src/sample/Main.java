@@ -7,8 +7,6 @@ import DAO.ParseFile;
 import application.bank.Bank;
 import application.entity.CheckFactory;
 import application.entity.CustomerFactory;
-import application.exception.UnknownCurrencyException;
-import application.exception.UnknownRoleException;
 import application.storage.CheckStorage;
 import application.storage.PersonStorage;
 import application.storage.StageStorage;
@@ -17,9 +15,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.File;
-import java.text.ParseException;
 
 public class Main extends Application {
 
@@ -48,12 +43,12 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         ParseFile.parse(CustomerFactory.INSTANCE, "Person");
-        ParseFile.parse(CheckFactory.GENERAL, "Check");
+        ParseFile.parse(CheckFactory.GENERAL, "Reciept");
         ParseDateFile.parse();
         System.out.println(Bank.GENERAL.getCurrentDate());
         Bank.GENERAL.incDate();
         ParseCurrentDate.parse();
-        ParseEntity.parse(CheckStorage.GENERAL, "Check");
+        ParseEntity.parse(CheckStorage.GENERAL, "Reciept");
         ParseEntity.parse(PersonStorage.GENERAL, "Person");
         launch(args);
     }

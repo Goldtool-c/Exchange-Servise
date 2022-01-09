@@ -15,13 +15,23 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Locale;
 
+/**
+ * Класс, обеспечивающий процедуру обмена валют в {@link sample.CustomerController}, {@link sample.Controller}
+ * @author Денис Гладышев
+ * @version 1.0*/
 public class Exchange {
+    /**
+     * Метод, определяющий поведение кнопки Exchange
+     * @param bankValue - объем валюты, которую банк собирается продать в текущей сделке
+     * @param bankCurrency - валюта, которую банк собирается продать в текущей сделке
+     * @param userCurrency - валюта, которую клиент собирается продать в текущей сделке
+     * @param userValue - объем валюты, которую клиент собирается продать в текущей сделке*/
     public static void exchange(TextField userValue, TextField bankValue, ComboBox<String> userCurrency, ComboBox<String> bankCurrency) throws UnknownRoleException, ParseException, UnknownCurrencyException {
         String userValueStr;
         String bankValueStr;
         String userCurrencyStr = parseCurrency(userCurrency);
         String bankCurrencyStr = parseCurrency(bankCurrency);
-        if(valid(userValue, bankValue, userCurrencyStr, bankCurrencyStr))
+        if(valid(userValue, bankValue, userCurrencyStr, bankCurrencyStr))//todo exception
         {
             userValueStr = parseValue(userValue);
             bankValueStr = parseValue(bankValue);
@@ -39,7 +49,7 @@ public class Exchange {
             String date = format.format(Bank.GENERAL.getCurrentDate());
             CheckFactory.GENERAL.create(true, date, "cashier1", PersonStorage.GENERAL.getUser().getName(),
                     userCurrencyStr, bankCurrencyStr, userValueStr, bankValueStr);
-            ParseEntity.parse(CheckStorage.GENERAL, "Check");
+            ParseEntity.parse(CheckStorage.GENERAL, "Reciept");
             ParseEntity.parse(PersonStorage.GENERAL, "Person");
             Bank.GENERAL.incVolume();
             //"date","cashierName", "customerName", "customerCurrency","bankCurrency", "customerCurrencyValue","bankCurrencyValue","id"
@@ -124,7 +134,7 @@ public class Exchange {
             System.out.println("User or bank does not have enough currency for this operation");
             return false;
         }
-        if(PersonStorage.GENERAL.getUser().getVolume()>1000.0||PersonStorage.GENERAL.getUser().getVolume()+userBalance>1000.0)
+        if(PersonStorage.GENERAL.getUser().getVolumeLimit()>1000.0||PersonStorage.GENERAL.getUser().getVolumeLimit()+userBalance>1000.0)
         {
             System.out.println("User is going to break the limit");
             return false;

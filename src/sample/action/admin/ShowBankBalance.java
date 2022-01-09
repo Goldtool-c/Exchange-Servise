@@ -5,7 +5,14 @@ import application.storage.PersonStorage;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 
+/**
+ * Класс выполняет задачу отображения информации о объеме нужной валюты в хранилище банка
+ * @author Денис Гладышев
+ * @version 1.0*/
 public class ShowBankBalance {
+    /**
+     * @param box - тип валюты
+     * @param label - лебл для отображения баланса*/
     public static void show(ComboBox<String> box, Label label)
     {
         String value = box.getValue();

@@ -1,5 +1,4 @@
 package application.exception;
-
 public class EntityNotFoundException extends Exception {
     public EntityNotFoundException() {
     }
